@@ -1,42 +1,29 @@
-**Nume:Eftenie Andrei-Vlad**
-
 ## Load Balancer
 
-### Descriere:
+### Description:
 
-* Scurtă descriere a funcționalității programului
+This program is a load balancer implemented using singly linked lists, with nine main functions that collectively allocate and manage memory for a hash ring containing servers. Each server is assigned keys with associated values based on hash values.
 
-Programul foloseste 9 functii principale si este implementat cu ajutorul listelor simplu inlantuite.
-Acesta aloca memorie pentru un hash_ring pe care se pun servere, care au atribuite chei cu valori, in functie de hash-uri.
+**CLIENT** has two main functions:
 
-CLIENT are 2 functii principale :
+- `client_store`: Stores a value and assigns it to a key.
+- `client_retrieve`: Retrieves the value associated with a key.
 
-- client_store -> stocheaza o valoare si o atribuie unei chei
+**LOAD BALANCER** has four main functions:
 
-- client_retrieve -> intoarce valoarea un chei
+- `loader_store`: Stores a key on the appropriate server, determined by the hash function.
+- `loader_retrieve`: Retrieves the value of a key and the server ID where it’s located.
+- `loader_add_server`: Adds a server to the hash ring based on its hash.
+- `loader_remove_server`: Removes a server from the hash ring, redistributing its keys to the next server in the ring.
 
-LOAD BALANCER are 4 functii principale :
+**SERVER** has three main functions:
 
-- loader_store -> stocheaza o cheie pe serverul potrivit, in functie de hash
+- `server_store`: Adds a key node to the appropriate server.
+- `server_retrieve`: Returns the value associated with a key.
+- `server_remove`: Removes the key node from the appropriate server.
 
-- loader_retrieve -> intoarce valoarea un chei si id-ul serverului pe care se afla
+#### Additional Explanations:
 
-- loader_add_server -> adauga un server pe hash_ring, in functie de hash, s
-
-- loader_remove_server -> sterge un server de pe hash_ring, redistribuind cheile de pe el urmatorului server
-
-SERVER are 3 functii principale :
-
-- server_store -> adauaga nodul cheii pe serverul potrivit
-
-- server_retrieve -> intoarce valoarea atribuita unei chei
-
-- server_remove -> sterge nodul cheii de pe serverul potrivit
-
-* Eventuale explicații suplimentare pentru anumite părți din temă ce crezi că nu sunt suficient de clare doar urmărind codul
-
-- Functiile init_load_balancer si init_server_memory aloca si initializeaza hash_ring-ul si serverele.
-
-- Functiile free_load_balancer si free_server_memory elibereaza toata memoria utilizata de hash_ring si de servere.
-
-- Implementarea listei simplu inlantuite este in "linkedlist.c" si "linkedlist.h".
+- `init_load_balancer` and `init_server_memory` allocate and initialize the hash ring and servers.
+- `free_load_balancer` and `free_server_memory` release all memory used by the hash ring and servers.
+- The implementation of the singly linked list is located in `linkedlist.c` and `linkedlist.h`.
